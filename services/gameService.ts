@@ -54,9 +54,15 @@ export const fetchHeroGames = async (): Promise<CardData[]> => {
   }
 };
 
-export const fetchGames = async (page: number = 1, signal?: AbortSignal): Promise<RawgGame[]> => {
+export const fetchGames = async (page: number = 1, signal?: AbortSignal, searchQuery?: string): Promise<RawgGame[]> => {
   try {
-    const url = `${BASE_URL}?key=${RAWG_API_KEY}&page=${page}&page_size=20&ordering=-metacritic&dates=2020-01-01,2025-12-31`;
+    let url = `${BASE_URL}?key=${RAWG_API_KEY}&page=${page}&page_size=20`;
+    
+    if (searchQuery) {
+      url += `&search=${encodeURIComponent(searchQuery)}`;
+    } else {
+      url += `&ordering=-metacritic&dates=2020-01-01,2025-12-31`;
+    }
     
     const response = await fetch(url, { 
       signal,

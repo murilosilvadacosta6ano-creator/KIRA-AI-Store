@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { RawgGame } from '../types';
 import { X, Play, Heart, Share2, Download, Monitor, Star, Calendar, Cpu, ShoppingBag, ExternalLink, ChevronRight } from 'lucide-react';
@@ -52,16 +51,16 @@ const GameModal: React.FC<GameModalProps> = ({ game, onClose }) => {
     <div 
       className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
-      {/* Backdrop */}
+      {/* Backdrop with Click Handler to Close */}
       <div 
-        className="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity" 
+        className="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity cursor-pointer" 
         onClick={onClose}
       />
 
       {/* Modal Content - Expanded Width */}
       <div className={`
         relative w-full max-w-6xl max-h-[90vh] glass-panel rounded-3xl overflow-hidden flex flex-col md:flex-row
-        transform transition-all duration-500 shadow-2xl border border-white/20
+        transform transition-all duration-500 shadow-2xl border border-white/20 z-10
         ${isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'}
       `}>
         
